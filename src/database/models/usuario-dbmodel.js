@@ -1,0 +1,34 @@
+const { Model, DataTypes } = require("sequelize");
+const bcrypt = require("bcrypt");
+
+class UsuarioDbModel extends Model {
+
+    static init(sequelize) {
+
+        super.init({
+
+            id: {
+                type: DataTypes.UUIDV4,
+                primaryKey: true
+            },
+            login: DataTypes.STRING,
+            senha: DataTypes.STRING,
+            active: DataTypes.BOOLEAN
+            
+        }, { sequelize, tableName: 'usuario' })
+
+        sequelize.beforeCreate((user) => {
+            
+            console.log(user.senha);
+
+        });
+
+    }
+
+    
+    static associate(models) {
+        this.belongsTo(models.PessoaDbModel, { foreignKey: 'pessoa_id', as:'pessoa' })
+    }
+}
+
+module.exports = UsuarioDbModel
