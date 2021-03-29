@@ -9,8 +9,9 @@ module.exports = [
     {
         method: 'POST',
         path: '/api/v1/operacao',
-        handler: OperacaoHandler.add,
         config: {
+            auth: 'jwt',
+            handler: OperacaoHandler.add,
             validate: {
                 payload: Joi.object({
                     tipo: Joi.string().required(),
@@ -20,10 +21,5 @@ module.exports = [
                 })
             }
         }
-    },
-    {
-        method: 'GET',
-        path: '/api/v1/operacao',
-        handler: OperacaoHandler.getAll,
     },
 ]

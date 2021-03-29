@@ -17,12 +17,6 @@ class UsuarioDbModel extends Model {
             
         }, { sequelize, tableName: 'usuario' })
 
-        sequelize.beforeCreate((user) => {
-            
-            console.log(user.senha);
-
-        });
-
     }
 
     

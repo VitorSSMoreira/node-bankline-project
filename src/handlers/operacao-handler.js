@@ -3,14 +3,23 @@
 
 const BaseHandler = require("#handler/base")
 const OperacaoService = require('#service/operacao')
+const service = new OperacaoService()
 
 class OperacaoHandler extends BaseHandler{
 
     constructor(){
         super("operacao", new OperacaoService())
     }
-}
 
-//export default new OperacaoHandler()
+    async getByAccount(request, h){
+
+        const id = request.params.id
+
+        const result = await service.getByAccountId(id)
+
+        return h.response(result).code(200)
+
+    }
+}
 
 module.exports = new OperacaoHandler()

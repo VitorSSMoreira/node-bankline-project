@@ -17,10 +17,10 @@ class OperacaoRepository {
     }
 
     async getByAccountId(contaId){
-        //return await new OperacaoDbModel.find({ $or : [{ contaOrigemId: contaId }, { contaDestinoId: contaId }] })
-        // const dbmodel = new OperacaoDbModel()
 
-        return await OperacaoDbModel.find().or([{ contaOrigemId: contaId }, { contaDestinoId: contaId }])
+        const result = await OperacaoDbModel.find().or([{ contaOrigemId: contaId }, { contaDestinoId: contaId }])
+
+        return result
     }
 
 }

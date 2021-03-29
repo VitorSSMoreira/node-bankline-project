@@ -6,7 +6,6 @@ module.exports = [
         method: 'POST',
         path: '/api/v1/pessoa',
         config: {
-            // auth: 'jwt',
             handler: PessoaHandler.add,
             description: 'Adicionar uma pessoa',
             notes: 'Retorna os dados de usuario e conta corrente da pessoa adicionada',
@@ -21,22 +20,24 @@ module.exports = [
             }
         }
     },
-    {
+    /*{
         method: 'GET',
         path: '/api/v1/pessoa',
-        handler: PessoaHandler.getAll,
         config: {
+            auth: 'jwt',
+            handler: PessoaHandler.getAll,
             description: 'Obtem todas as pessoas',
             notes: 'Retorna os dados de todas as pessoas',
             tags: ['api'], // ADD THIS TAG
         }
 
-    },
+    },*/
     {
         method: 'GET',
         path: '/api/v1/pessoa/{id}',
-        handler: PessoaHandler.getById,
         config: {
+            auth: 'jwt',
+            handler: PessoaHandler.getById,
             description: 'Obtem as pessoa por id',
             notes: 'Retorna os dados da pessoa',
             tags: ['api'], // ADD THIS TAG
@@ -45,8 +46,9 @@ module.exports = [
     {
         method: 'PUT',
         path: '/api/v1/pessoa/{id}',
-        handler: PessoaHandler.update,
         config: {
+            auth: 'jwt',
+            handler: PessoaHandler.update,
             description: 'Atualiza pessoa por id',
             notes: 'Retorna status OK',
             tags: ['api'], // ADD THIS TAG
@@ -65,8 +67,9 @@ module.exports = [
     {
         method: 'DELETE',
         path: '/api/v1/pessoa/{id}',
-        handler: PessoaHandler.inactivate,
         config: {
+            auth: 'jwt',
+            handler: PessoaHandler.inactivate,
             description: 'Inativa pessoa por id',
             notes: 'Retorna status OK',
             tags: ['api'], // ADD THIS TAG

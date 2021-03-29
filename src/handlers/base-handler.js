@@ -45,6 +45,9 @@ class BaseHandler {
     }
 
     inactivate = async (request, h) =>{
+
+        console.log(request);
+
         await this.service.inactivate(request.params.id)
         return h.response().code(200)
     }

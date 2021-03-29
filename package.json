@@ -4,9 +4,9 @@
   "description": "api para controle de conta corrente, cadastro de usuarios, depositos e tranferencias entre contas banco e credito ",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "SET NODE_ENV=development; nodemon index.js",
     "pretest": "npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate",
-    "test": "mocha --reports"
+    "test": "SET NODE_ENV=development; mocha --reports"
   },
   "author": "",
   "license": "ISC",
