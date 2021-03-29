@@ -10,6 +10,15 @@ class OperacaoHandler extends BaseHandler{
     constructor(){
         super("operacao", new OperacaoService())
     }
+    async getByAccount(request, h) {
+
+        const id = request.params.id
+
+        return h.response(await OperacaoService.getByAccount(id)).code(200)
+
+    }
+
+}
 
     async getByAccount(request, h){
 

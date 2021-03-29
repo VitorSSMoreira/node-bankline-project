@@ -75,8 +75,10 @@ class PessoaService extends BaseService {
     async update(id, payload) {
 
         let pessoa = await this.repository.getById(id)
+        console.log("pessoa = ", pessoa)
 
         if (!pessoa) throw Boom.notFound(Messages.Pessoa.NaoEncotrada)
+        if (!pessoa.active) throw Boom.badRequest(Messages.Pessoa.Inativo)
 
         pessoa.nome = payload.nome
 
@@ -84,8 +86,8 @@ class PessoaService extends BaseService {
 
         let usuario = await this.usuarioRepository.getByPessoaId(id)
 
-        usuario.senha = payload.senha
-
+        usuario.senha = await bcrypt.hashSync(payload.senha, 8)
+                
         await usuario.save()
     }
 }

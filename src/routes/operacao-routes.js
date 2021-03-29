@@ -22,4 +22,21 @@ module.exports = [
             }
         }
     },
+    {
+        method: 'GET',
+        path: '/api/v1/operacao',
+        handler: OperacaoHandler.getAll,
+    },
+    {
+        method: 'GET',
+        path: '/api/v1/operacao/{id}',
+        config: {
+            validate: {
+                params: Joi.object({
+                    id: Joi.string().guid()
+                }),
+            },
+        },
+        handler: OperacaoHandler.getAll,
+    },
 ]
