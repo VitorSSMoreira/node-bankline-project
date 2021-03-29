@@ -7,7 +7,8 @@ module.exports = {
         UsuarioTipoErrado: "O tipo do parametro 'usuario' está incorreto",
         ContaCorrenteTipoErrado: "O tipo do parametro 'conta-corrente' está incorreto",
         JaExiste: "Pessoa já existe",
-        NaoEncotrada: "Pessoa não encontrada"
+        NaoEncotrada: "Pessoa não encontrada",
+        Inativo:"Pessoa com cadastro inativo"
     },
     Operacao:{
         TipoInvalido: "Tipo de operação inválida",

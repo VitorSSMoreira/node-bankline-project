@@ -19,6 +19,8 @@ class AuthHandler{
         const usuario = await this.usuarioService.getByLogin(request.payload.login)
 
         if(!usuario) throw Boom.notFound("Usuário não encontrado")
+        console.log(usuario)
+        //if(!usuario.active) throw Boom.badRequest(Messages.Pessoa.Inativo)
 
         if(!await bcrypt.compareSync(request.payload.senha, usuario.senha)) throw Boom.unauthorized("Senha/Usuário inválido")
 
