@@ -40,13 +40,10 @@ class AuthHandler{
     validateToken = async (decoded, request, h) =>{
 
         console.log(decoded)
-        //console.log(request)
-        //console.log(h)
-
 
         return {
             isValid: true,
-            //credentials: { user: decoded.decoded.payload.user }
+            // credentials: { user: decoded.decoded.payload.user }
         };
 
     }

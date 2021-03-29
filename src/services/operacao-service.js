@@ -32,6 +32,7 @@ class OperacaoService {
     }
 
     async getAll() {
+        
         return await this.repository.getAll()
     }
 
@@ -40,7 +41,26 @@ class OperacaoService {
     }
 
     async getByAccountId(contaCorrenteId) {
-        return await this.repository.getByAccountId(contaCorrenteId)
+
+        const response = await this.repository.getByAccountId(contaCorrenteId)
+
+        const result = response.map(transacao => {
+
+            if((transacao.tipo === "RETIRADA") || (transacao.tipo === "TRANSFERENCIA" && transacao.contaOrigemId === contaCorrenteId)){
+                transacao.valor *= -1
+            }
+
+            return {
+                tipo: transacao.tipo,
+                valor: transacao.valor,
+                origem: transacao.contaOrigemId,
+                destino: transacao.contaDestinoId,
+                date: new Date(transacao.createdAt).toLocaleString("pt-BR")
+            }
+
+        })
+
+        return result
     }
 
     async retirada(operacao) {

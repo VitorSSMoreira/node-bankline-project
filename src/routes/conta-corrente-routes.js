@@ -10,8 +10,9 @@ module.exports = [
     {
         method: 'GET',
         path: '/api/v1/conta-corrente/{id}',
-        handler: ContaCorrenteHandler.getById,
         config:{
+            auth: 'jwt',
+            handler: ContaCorrenteHandler.getById,
             validate:{
                 params: Joi.object({
                     id: Joi.string().guid()
@@ -19,9 +20,12 @@ module.exports = [
             }
         }
     },
-    {
+    /*{
         method: 'GET',
         path: '/api/v1/conta-corrente',
-        handler: ContaCorrenteHandler.getAll,
-    }
+        config: {
+            auth: 'jwt',
+            handler: ContaCorrenteHandler.getAll,
+        }
+    }*/
 ]

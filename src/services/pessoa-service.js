@@ -9,6 +9,7 @@ const UsuarioRepository = require("../repositories/usuario-repository.js")
 const BaseService = require("./base-service.js")
 
 const bcrypt = require('bcrypt')
+const { isNull } = require("lodash")
 
 class PessoaService extends BaseService {
 
@@ -23,7 +24,11 @@ class PessoaService extends BaseService {
 
         const exists = await this.repository.getByCpf(payload.cpf)
 
-        if (exists) throw Boom.badRequest(Messages.Pessoa.JaExiste)
+        const usuarioEncontrado = await this.usuarioRepository.getByLogin(payload.login);
+
+        if (exists || !isNull(exists)) throw Boom.badRequest(Messages.Pessoa.JaExiste)
+
+        if (usuarioEncontrado || !isNull(usuarioEncontrado)) throw Boom.badRequest(Messages.Pessoa.LoginJaExiste)
 
         const senha = await bcrypt.hashSync(payload.senha, 8);
 
